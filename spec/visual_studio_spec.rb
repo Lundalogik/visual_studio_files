@@ -1,6 +1,20 @@
 require "spec_helper"
 
-describe "VisualStudioFiles" do
+describe "A sample project with a None file" do
+  let :csproj do 
+     VisualStudioFiles::CsProj.new(SampleFiles.none_csproj)
+  end
+  it "should contain file" do
+    expect(csproj.files.map { |e| e.to_hash }).to match_array [
+      {:file=>"README.txt", :type=>"None", :link=>nil, :dependent_upon=>nil, :sub_type=>nil, :generator=>nil}
+    ]
+  end
+  it "should be evident that it's a none file" do
+    expect(csproj.files.map { |e| e.none? }).to match_array [true]
+  end
+end
+
+describe "A sample project file with assorted files" do
   let :csproj do 
      VisualStudioFiles::CsProj.new(SampleFiles.project_csproj)
   end
@@ -35,7 +49,7 @@ describe "VisualStudioFiles" do
   end
 end
 
-describe "" do
+describe "two projects dependent upon each other by way of links" do
   let :isop do 
      VisualStudioFiles::CsProj.new(SampleFiles.isop_csproj)
   end

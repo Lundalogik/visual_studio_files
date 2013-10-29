@@ -102,7 +102,22 @@ module VisualStudioFiles
       end
     end
     def link?
-       @link!=nil && !@link.empty?
+      @link!=nil && !@link.empty?
+    end
+    def none?
+      @type=="None"
+    end
+    def compile?
+      @type=="Compile"
+    end
+    def content?
+      @type=="Content"
+    end
+    def embedded_resource?
+      @type=="EmbeddedResource"
+    end
+    def page?
+      @type=="Page"
     end
     alias_method :eql?, :==
     def hash

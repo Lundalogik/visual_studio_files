@@ -39,4 +39,8 @@ class SampleFiles
   def self.isop_cli_csproj
     File.open(File.join(folder, 'Isop.Cli.csproj'),"r").read
   end
+
+  def self.none_csproj
+    File.open(File.join(folder, 'none.csproj'),"r").read
+  end
 end
