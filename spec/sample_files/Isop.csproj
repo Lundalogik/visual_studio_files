@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3B16BAF9-69F1-4A7B-A6C0-62DE88FD38CB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Isop</RootNamespace>
+    <AssemblyName>Isop</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\isop\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodeAnalysisRuleSet>GlobalizationRules.ruleset</CodeAnalysisRuleSet>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>none</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Configuration\ConfigureUsingInstance.cs" />
+    <Compile Include="Controller\FindMethodAmongLexedTokens.cs" />
+    <Compile Include="Controller\TurnParametersToArgumentWithOptions.cs" />
+    <Compile Include="Infrastructure\ListExtensions.cs" />
+    <Compile Include="Controller\TypeContainer.cs" />
+    <Compile Include="Infrastructure\ReflectionExtensions.cs" />
+    <Compile Include="Infrastructure\StringExtensions.cs" />
+    <Compile Include="Configuration\IsopAutoConfiguration.cs" />
+    <Compile Include="Lex\ArgumentLexer.cs" />
+    <Compile Include="Parse\ArgumentParser.cs" />
+    <Compile Include="Build.cs" />
+    <Compile Include="Controller\ControllerRecognizer.cs" />
+    <Compile Include="Lex\TokenType.cs" />
+    <Compile Include="Lex\Token.cs" />
+    <Compile Include="Infrastructure\PeekEnumerable.cs" />
+    <Compile Include="MissingArgumentException.cs" />
+    <Compile Include="Parse\ArgumentParameter.cs" />
+    <Compile Include="Parse\Parameters\OrdinalParameter.cs" />
+    <Compile Include="Parse\Parameters\OptionParameter.cs" />
+    <Compile Include="Parse\Parameters\VisualStudioParameter.cs" />
+    <Compile Include="Parse\ArgumentWithOptions.cs" />
+    <Compile Include="Parse\RecognizedArgument.cs" />
+    <Compile Include="Parse\ParsedArguments.cs" />
+    <Compile Include="Parse\MergedParsedArguments.cs" />
+    <Compile Include="Parse\UnrecognizedArgument.cs" />
+    <Compile Include="TypeConversionFailedException.cs" />
+    <Compile Include="Controller\RewriteLexedTokensToSupportHelpAndIndex.cs" />
+    <Compile Include="Controller\ParsedMethod.cs" />
+    <Compile Include="Infrastructure\MethodInfoOrProperty.cs" />
+    <Compile Include="Help\HelpXmlDocumentation.cs" />
+    <Compile Include="Controller\HelpController.cs" />
+    <Compile Include="Help\HelpForArgumentWithOptions.cs" />
+    <Compile Include="Controller\HelpForControllers.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+</Project>
