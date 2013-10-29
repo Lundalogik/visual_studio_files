@@ -101,6 +101,9 @@ module VisualStudioFiles
         @generator = value
       end
     end
+    def link?
+       @link!=nil && !@link.empty?
+    end
     alias_method :eql?, :==
     def hash
       @downcase_and_path_replaced.hash

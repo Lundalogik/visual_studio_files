@@ -57,7 +57,7 @@ describe "" do
     end
 
     links = VisualStudioFiles::CsProj.new(cli.to_s).files.select do |file|
-      file.link && !file.link.empty?
+      file.link?
     end
     expect(links.size).not_to eq 0
   end
