@@ -21,14 +21,21 @@ module VisualStudioFiles
             depend_upon = file.elements.select { |el| el.name == 'DependentUpon'  }.map { |e| e.get_text.value }
             generator = file.elements.select { |el| el.name == 'Generator' }.map { |e| e.get_text.value }
             sub_type =  file.elements.select { |el| el.name == 'SubType' }.map { |e| e.get_text.value }
-            files.push(FileReference.new({
+            copy_to_output_directory = file.elements.select { |el| el.name == 'CopyToOutputDirectory' }.map { |e| e.get_text.value }
+            hash = {
               :file=>file.attributes['Include'], 
               :type=>elementType, 
               :link=> links.first,
               :dependent_upon=>depend_upon.first,
-              :generator => generator.first,
-              :sub_type => sub_type.first 
-            }))
+              :sub_type => sub_type.first
+            }
+            if generator!=nil
+              hash[:generator] = generator.first
+            end
+            if copy_to_output_directory!=nil
+              hash[:copy_to_output_directory] = copy_to_output_directory.first
+            end
+            files.push(FileReference.new(hash))
           }
       }
       return files
@@ -50,6 +57,9 @@ module VisualStudioFiles
       end
       if ref.sub_type
         el.add_element('SubType').add_text(ref.sub_type)
+      end
+      if ref.copy_to_output_directory
+        el.add_element('CopyToOutputDirectory').add_text(ref.copy_to_output_directory)
       end
     end
     def clear_links()
@@ -73,7 +83,7 @@ module VisualStudioFiles
   end
 
   class FileReference
-    attr_reader :file, :downcase_and_path_replaced, :type, :link, :dependent_upon, :generator, :sub_type
+    attr_reader :file, :downcase_and_path_replaced, :type, :link, :dependent_upon, :generator, :sub_type, :copy_to_output_directory
     def initialize opts
       opts.each do |key,value|
         self[key]=value
@@ -99,6 +109,8 @@ module VisualStudioFiles
         @sub_type = value
       when :generator
         @generator = value
+      when :copy_to_output_directory
+        @copy_to_output_directory = value
       end
     end
     def link?
@@ -130,7 +142,8 @@ module VisualStudioFiles
         :link=>@link,
         :dependent_upon=>@dependent_upon,
         :sub_type=>@sub_type,
-        :generator=>@generator
+        :generator=>@generator,
+        :copy_to_output_directory=>@copy_to_output_directory
       }
     end
     def to_s
