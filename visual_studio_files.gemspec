@@ -7,7 +7,7 @@ $:.unshift lib unless $:.include?(lib)
 
 Gem::Specification.new do |spec|
   spec.name        = 'visual_studio_files'
-  spec.version     = '0.1.1'
+  spec.version     = '0.1.2'
   spec.licenses    = []
   spec.authors     = ["wallymathieu"]
   spec.email       = ["support@lundalogik.se"]
