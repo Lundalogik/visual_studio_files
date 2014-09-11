@@ -1,7 +1,7 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 #require File.expand_path("../../config/environment", __FILE__)
-require File.join(File.dirname(File.absolute_path(__FILE__)),"../lib/visual_studio_files.rb")
-require 'rspec/autorun'
+require_relative "../lib/visual_studio_files.rb"
+#require 'rspec/autorun'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -42,5 +42,9 @@ class SampleFiles
 
   def self.none_csproj
     File.open(File.join(folder, 'none.csproj'),"r").read
+  end
+
+  def self.content_csproj
+    File.open(File.join(folder, 'content.csproj'),"r").read
   end
 end
